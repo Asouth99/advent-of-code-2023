@@ -77,6 +77,39 @@ func SolvePart1(inputFile string, logger *log.Logger) int {
 	return answer
 }
 
+var digitWords = map[int]string{
+	0: "zero",
+	1: "one",
+	2: "two",
+	3: "three",
+	4: "four",
+	5: "five",
+	6: "six",
+	7: "seven",
+	8: "eight",
+	9: "nine",
+}
+
+func isValidDigit(idx int, line string) (int, bool) {
+	// Return if number
+	if line[idx] >= '0' && line[idx] <= '9' {
+		return int(line[idx] - '0'), true
+	}
+
+	// Return if spells out a number
+	for i, word := range digitWords {
+		if (len(word) + idx) > len(line) {
+			continue
+		}
+
+		if word == line[idx:len(word)+idx] {
+			return i, true
+		}
+	}
+
+	return 0, false
+}
+
 func SolvePart2(inputFile string, logger *log.Logger) int {
 	f, err := os.Open(inputFile)
 	if err != nil {
@@ -90,9 +123,43 @@ func SolvePart2(inputFile string, logger *log.Logger) int {
 	i := -1
 	for scanner.Scan() {
 		i++
+		line := scanner.Text()
 
-		// line := scanner.Text()
-		// logger.Printf("%d : %s", i, line)
+		logger.Printf("%d : %s", i, line)
+		var left, right int
+		foundL, foundR := false, false
+		idxL := 0
+		idxR := len(line) - 1
+		for idxL <= idxR {
+			if foundL && foundR {
+				break
+			}
+
+			if !foundL {
+				if l, ok := isValidDigit(idxL, line); ok {
+					left = l
+					foundL = true
+				} else {
+					idxL++
+				}
+			}
+
+			if !foundR {
+				if r, ok := isValidDigit(idxR, line); ok {
+					right = r
+					foundR = true
+				} else {
+					idxR--
+				}
+			}
+		}
+
+		if !(foundL && foundR) {
+			logger.Fatalf("Left and right digits not found in %s", line)
+		}
+
+		logger.Print(10*left + right)
+		answer += 10*left + right
 	}
 	return answer
 }

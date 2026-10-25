@@ -1,5 +1,5 @@
-# advent-of-code-2015
-Solutions to puzzles on https://adventofcode.com/2015
+# advent-of-code-2023
+Solutions to puzzles on https://adventofcode.com/2023
 
 
 ## Getting started

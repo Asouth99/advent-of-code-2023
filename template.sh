@@ -26,5 +26,5 @@ sed -i -e 's/dayXX/day'${dayNumber}'/g' ./day${dayNumber}/day${dayNumber}_test.g
 sed -i -e 's/template\/day'${dayNumber}'/day'${dayNumber}'/g' ./day${dayNumber}/day${dayNumber}_test.go
 
 # Modify main.go file
-sed -i "/\/\/ ADD IMPORT HERE/a \ \ \ \ \"aoc2015/day${dayNumber}\"" main.go
+sed -i "/\/\/ ADD IMPORT HERE/a \ \ \ \ \"aoc2023/day${dayNumber}\"" main.go
 sed -i "/\/\/ ADD SOLUTION HERE/a \ \ \ \ ${day}: day${dayNumber}.Solve," main.go

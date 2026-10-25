@@ -25,6 +25,12 @@ var tests = []testCase{
 		expectedP1:    142,
 		expectedP2:    0,
 	},
+	{
+		name:          "Example 2",
+		inputFilePath: "example_2.txt",
+		expectedP1:    0,
+		expectedP2:    281,
+	},
 }
 
 var testLogger *log.Logger

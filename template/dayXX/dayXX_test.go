@@ -1,7 +1,7 @@
 package dayXX_test
 
 import (
-	"aoc2015/template/dayXX"
+	"aoc2023/template/dayXX"
 	"flag"
 	"fmt"
 	"io"
